@@ -5,4 +5,6 @@ export type TProduct={
     _id:string;
     description:string;
     rating:number;
+    category:string;
+    brand:string
 }

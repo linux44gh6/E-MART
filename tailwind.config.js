@@ -9,7 +9,13 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-  		colors: {},
+  		colors: {
+			'primary':"#4A90E2",
+			'secondary': "#F5F7FA",
+			"accent":"#FFD166",
+			"text":"#2D2D2D"
+			
+		},
   		keyframes: {
   			'accordion-down': {
   				from: {

@@ -1,5 +1,4 @@
 import { useGetAllUserQuery } from '@/Redux/Features/UserManageMent/getAllUser';
-
 import {
     Table,
     TableBody,
@@ -20,8 +19,6 @@ interface TUser{
     _id:string,
     isBlocked:boolean
 }
-
-
 const Users = () => {
     const {data,refetch}=useGetAllUserQuery(undefined)
     const [blockUser]=useBlockUserMutation()

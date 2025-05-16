@@ -1,13 +1,18 @@
-import Banner from '@/myComponents/Banner/Banner';
+
 import Featured from '@/myComponents/Featured/Featured';
-import Testimonials from '@/myComponents/Testomonials/Testimonials';
+import FilterSidebar from '@/myComponents/Filter/Filter';
 
 const Home = () => {
     return (
         <div>
-           <Banner />
-           <Featured />
-           <Testimonials/>
+          <div className='flex gap-4'>
+            <div className='w-1/4 blocked lg:block hidden mt-2'>
+              <FilterSidebar/>
+            </div>
+            <div className=' w-3/4'>
+              <Featured />
+            </div>
+          </div>
 
         </div>
     );

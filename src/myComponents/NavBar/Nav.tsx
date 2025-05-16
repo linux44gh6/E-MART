@@ -1,15 +1,5 @@
 import { IoPersonOutline } from "react-icons/io5";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import img from "@/assets/school-logo-design-featuring-pencils-books-develop-minimalist-logo-school-supply-retailer-minimalist-simple-modern-vector-logo-design_538213-49653-removebg-preview.png";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-import { components } from "@/myComponents/NavComponents/Components";
-
+import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 
 import { NavLink } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -32,110 +22,89 @@ const Nav = () => {
   const totalQuantity=cart.totalQuantity
   // const {data:product}=useGetAllProductsQuery(undefined)
   return (
-   <div className="border-b-2 border-gray-200 shadow-sm  bg-white">
-    <div className="flex justify-around items-center">
-    <div>
-      <NavLink to={'/'}><img className='w-24' src={img} alt="" /></NavLink>
+<div className="bg-secondary shadow-md" style={{ borderBottom: "2px solid #4A90E225" }}>
+  <div className="container mx-auto px-4 py-3">
+    <div className="flex items-center justify-between">
+      {/* Logo */}
+      <NavLink 
+        to={'/'} 
+        className="text-2xl font-bold tracking-tight"
+        style={{ color: 'primary' }}
+      >
+        E-MART
+      </NavLink>
+
+      {/* Search Bar */}
+      <div className="mx-6 flex-1 max-w-2xl">
+        <div className="relative">
+          <Input 
+            onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+            className="pl-10 pr-4 py-2 rounded-full border-2 border-primary/20 focus:border-primary/40 focus-visible:ring-0"
+            placeholder="Search your item"
+            style={{
+              backgroundColor: '#F5F7FA',
+              color: 'text'
+            }}
+          />
+          <AiOutlineSearch 
+            size={20}
+            className="absolute left-3 top-1/2 -translate-y-1/2"
+            style={{ color: 'primary' }}
+          />
+        </div>
       </div>
-      <div className="w-9/12">
-       <Input 
-         onChange={(e) => dispatch(setSearchQuery(e.target.value))}
-       className="bg-gray-200" type="text"  placeholder="Search your item" />
+
+      {/* User Controls */}
+      <div className="flex items-center gap-4">
+        {user ? (
+          <DropDown 
+            button={
+              <div className="p-2 rounded-full hover:bg-primary/10 transition-colors">
+                <IoPersonOutline 
+                  size={28} 
+                  style={{ color: 'text' }}
+                  className="hover:text-primary transition-colors"
+                />
+              </div>
+            } 
+          />
+        ) : (
+          <CustomDialog 
+            button={
+              <div className="p-2 rounded-full hover:bg-primary/10 transition-colors">
+                <IoPersonOutline 
+                  size={28} 
+                  style={{ color: 'text' }}
+                  className="hover:text-primary transition-colors"
+                />
+              </div>
+            } 
+          />
+        )}
+
+        <NavLink 
+          to={'/cart'} 
+          className="relative p-2 rounded-full hover:bg-primary/10 transition-colors"
+        >
+          <AiOutlineShoppingCart 
+            size={28}
+            style={{ color: 'text' }}
+            className="hover:text-primary transition-colors"
+          />
+          <Badge 
+            className="absolute -top-1 -right-1 min-w-5 flex justify-center items-center shadow-sm"
+            style={{ backgroundColor: 'accent', color: 'text' }}
+          >
+            {totalQuantity}
+          </Badge>
+        </NavLink>
       </div>
-      <div className=" flex justify-between items-center space-x-4">
-        {user?<DropDown button={<IoPersonOutline size={34} />} />:
-          <CustomDialog button={<IoPersonOutline size={34} />} />
-        }
-     
-      <NavLink className={'relative'} to={'/cart'}><AiOutlineShoppingCart size={34} /> <Badge className="absolute -top-2 -left-2">{totalQuantity}</Badge></NavLink>
     </div>
-    </div>
-     <div className=" flex justify-center items-center">
-     
-     
-  <div>
-  <NavigationMenu>
-  <NavigationMenuList>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Stationery</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Home Goods</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Toys & Accessories</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Collections</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Brands</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Clearance</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">New Arrivals</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-  
-    <NavigationMenuItem>
-            <NavLink className={'font-semibold'} to={'/about'}>About</NavLink>
-    </NavigationMenuItem>
-   
-  </NavigationMenuList>
-</NavigationMenu>
+
+    {/* Navigation Links */}
+
   </div>
-    </div>
-   </div>
+</div>
   );
 };
 

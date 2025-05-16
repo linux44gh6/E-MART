@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const AllProducts = () => {
     const navigate = useNavigate();
     const {data:product,isLoading}=useGetAllProductsQuery(undefined)
+    console.log(product?.data);
     const searchQuery=useSelector((state:RootState)=>state.search.query)
     const filteredProducts=product?.data?.filter((p:{title:string})=>p.title.toLowerCase().includes(searchQuery.toLowerCase()))
     const handleToShowDetails = (id:string) => {

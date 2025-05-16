@@ -5,7 +5,7 @@ import baseApi from "./Api/BaseApi";
 import authReducer from './Slice';
 import cartSlice from './Features/ProductSlice/cartSlice';
 import searchSlice from './Features/ProductSlice/SearchSlice';
-
+import FilterSlice from './Features/ProductSlice/FilterSlice'
 const persistConfig = {
   key: 'auth',
   storage,
@@ -23,7 +23,8 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistAuthReducer,
     cart: persistCartReducer,
-    search: searchSlice
+    search: searchSlice,
+    filter:FilterSlice
   },
 
   middleware: (defaultMiddleware) =>

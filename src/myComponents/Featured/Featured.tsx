@@ -1,26 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllProductsQuery } from "@/Redux/Features/ProductMangement/getAllProdcuts";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
 import { Button } from "@/components/ui/button";
 import { TProduct } from "@/Types/productsType";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/Store";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import ProductCard from "./ProductCard";
 const Featured = () => {
   const navigate = useNavigate();
-  const { data: product,isLoading } = useGetAllProductsQuery(undefined);
+  const { data: product, isLoading } = useGetAllProductsQuery(undefined);
+  console.log(product?.data);
+
   const searchQuery = useSelector((state: RootState) => state.search.query);
+  const filter = useSelector((state: RootState) => state.filter.filter);
+
   const filteredProducts = product?.data
-    ?.filter((p: { title: string; }) => p.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    .slice(0, 6);
+    ?.filter((p: TProduct) =>
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (filter.length === 0 || filter.includes(p.category)||filter.includes(p.brand))
+    )
 
   const handleToShowDetails = (id: string) => {
     navigate(`/details/${id}`);
@@ -29,42 +30,31 @@ const Featured = () => {
   const handelToAllProducts = () => {
     navigate("/allProducts");
   };
+
   if (isLoading) {
     return (
-        <div className="space-y-2">
-            <Skeleton className="w-full h-[40px] rounded-lg" />
-            <Skeleton className="w-full h-[40px] rounded-lg" />
-            <Skeleton className="w-full h-[40px] rounded-lg" />
-            <Skeleton className="w-full h-[40px] rounded-lg" />
-            <Skeleton className="w-full h-[40px] rounded-lg" />
-            <Skeleton className="w-full h-[40px] rounded-lg" />
-        </div>
+    <div className=" grid grid-cols-4 gap-4">
+  {
+    filteredProducts?.map((_: any, index:number) => (
+      <Skeleton key={index} className="w-52 h-52 rounded-lg" />
+    ))
+  }
+</div>
+
     );
-}
+  }
+
   return (
-    <div className="mt-10">
-      <h2 className="text-4xl font-bold text-center mb-6">Featured Products</h2>
+    <div className="mt-2">
       <div>
         <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-2">
           {filteredProducts?.length ? (
             filteredProducts.map((product: TProduct) => (
-              <Card key={product._id}>
-                <CardHeader>
-                  <img className="" src={product.image} alt={product.title} />
-                </CardHeader>
-                <CardContent>
-                  <CardTitle>${product.price}</CardTitle>
-                  <CardTitle>{product.title}</CardTitle>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button
-                    onClick={() => handleToShowDetails(product?._id)}
-                    className=" bg-white text-black border border-black w-full hover:bg-white hover:scale-105 transition duration-200"
-                  >
-                    View Details
-                  </Button>
-                </CardFooter>
-              </Card>
+              <ProductCard
+                product={product}
+                key={product._id}
+                handleToShowDetails={handleToShowDetails}
+              />
             ))
           ) : (
             <p className="text-center col-span-4">No products found!</p>

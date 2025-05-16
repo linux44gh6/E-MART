@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# 🛒 E-Mart – Full Stack E-commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+E-Mart is a full-featured, scalable e-commerce application built using **React**, **Redux**, **TypeScript**, **Node.js**, **Express**, and **MongoDB**. It includes user authentication, product management, cart functionality, and an admin dashboard.
 
-Currently, two official plugins are available:
+![E-Mart Screenshot](./screenshots/homepage.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📚 Table of Contents
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Tech Stack](#-tech-stack)
+- [Features](#-features)
+- [Installation](#-installation)
+- [Environment Variables](#-environment-variables)
+- [Running the App](#-running-the-app)
+- [API Endpoints](#-api-endpoints)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🚀 Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 🖥️ Frontend:
+- React
+- Redux Toolkit
+- TypeScript
+- Axios
+- Tailwind CSS (or your choice of CSS framework)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 🔧 Backend:
+- Node.js
+- Express.js
+- TypeScript
+- MongoDB & Mongoose
+- JWT for Auth
+- Multer (for file uploads)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## 🎯 Features
+
+- ✅ User Registration & Login
+- ✅ JWT Authentication
+- ✅ Product Listings & Categories
+- ✅ Cart & Checkout
+- ✅ Admin Dashboard (Add/Edit/Delete Products)
+- ✅ Order Management
+- ✅ Search, Filter, Pagination
+- 🚧 Payment Integration (Coming Soon)
+
+---
+
+## 🧰 Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/e-mart.git
+cd e-mart

@@ -1,6 +1,6 @@
 
 import HeroSlider from '@/myComponents/Banner/Banner';
-import HotDeals from './HotDeals';
+import HotDeals from './HotDeals/HotDeals';
 const Home = () => {
     return (
         <div>

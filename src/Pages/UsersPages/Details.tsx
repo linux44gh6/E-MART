@@ -5,17 +5,11 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'sonner';
 import { Skeleton } from '@/components/ui/skeleton';
+import type { ProductData } from '@/Types/productsType';
 const Details = () => {
 
     const dispatch = useDispatch()
-    interface ProductData {
-        id: string;
-        title: string;
-        description: string;
-        price: number;
-        rating: number;
-        image: string;
-    }
+  
     const handleToCart = (data: ProductData) => {
         const toastId = toast.success('');
         dispatch({ type: 'cart/addItemToCart', payload: data });

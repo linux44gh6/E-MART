@@ -9,9 +9,19 @@ import {
 
 } from "@/components/ui/card";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
+import type { ProductData } from "@/Types/productsType";
+import { ShoppingBasket } from "lucide-react";
 const ProductCard = ({ product, handleToShowDetails }: { product: any, handleToShowDetails: any }) => {
 
   const [isHovered, setIsHovered] = useState(false);
+ const dispatch = useDispatch()
+     const handleToCart = (data: ProductData) => {
+        const toastId = toast.success('adding..');
+        dispatch({ type: 'cart/addItemToCart', payload: data });
+        toast.success('Product added to cart', { id: toastId });
+    }
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -46,8 +56,8 @@ const ProductCard = ({ product, handleToShowDetails }: { product: any, handleToS
                   exit={{ opacity: 0, y: 40 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  <Button className="bg-accent hover:bg-accent text-text font-semibold px-4 py-2 rounded-md shadow transition-transform duration-200">
-                    Add to Cart
+                  <Button onClick={() => handleToCart(product)} className="bg-accent hover:bg-accent text-text font-semibold px-4 py-2 rounded-md shadow transition-transform duration-200">
+                  <ShoppingBasket/>  Add to Cart
                   </Button>
                 </motion.div>
               )}

@@ -15,14 +15,21 @@ const HotDeals = () => {
     console.log(products?.data);
     return (
         <div>
-            <h1 className="text-3xl font-bold p-5 uppercase my-5"><span className="text-red-500">hot</span> Products</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 p-5">
+            <motion.h1
+            initial={{opacity:0,x:-50}}
+            whileInView={{opacity:1,x:0}}
+            transition={{duration:.4}}
+            className="text-4xl font-bold p-5 uppercase my-5 text-text"><span className="text-red-500">hot</span> Products</motion.h1>
+            <motion.div
+            
+            // className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 p-5">
                 {
                     products?.data?.slice(0,15).map((product:TProduct)=>(
                          <ProductCard product={product} key={product._id} handleToShowDetails={handleToShowDetails}/>
                     ))
                 }
-            </div>
+            </motion.div>
             <motion.div
              initial={{opacity:0,y:50}}
              whileInView={{opacity:1,y:0}}

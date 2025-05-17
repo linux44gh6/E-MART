@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllProductsQuery } from "@/Redux/Features/ProductMangement/getAllProdcuts";
 
 
@@ -33,14 +32,10 @@ const Featured = () => {
 
   if (isLoading) {
     return (
-    <div className=" grid grid-cols-4 gap-4">
-  {
-    filteredProducts?.map((_: any, index:number) => (
-      <Skeleton key={index} className="w-52 h-52 rounded-lg" />
-    ))
-  }
-</div>
-
+      <div className="space-y-2 grid grid-cols-4">
+        
+            <Skeleton className="w-52 h-52 rounded-lg" />
+      </div>
     );
   }
 

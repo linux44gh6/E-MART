@@ -31,7 +31,7 @@ const Nav = () => {
         className="text-2xl font-bold tracking-tight"
         style={{ color: 'primary' }}
       >
-        E-MART
+       MERCH-BITE
       </NavLink>
 
       {/* Search Bar */}

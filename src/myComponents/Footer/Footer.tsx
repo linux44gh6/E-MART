@@ -28,7 +28,7 @@ const Footer = () => {
         <nav className="flex flex-col">
           <h6 className="footer-title font-semibold text-2xl mb-3">Social</h6>
           <div className="grid grid-flow-col gap-4">
-           <NavLink to={'#'}><FaFacebook className='size-10'></FaFacebook></NavLink>
+           <NavLink to={'https://www.facebook.com/merchbite'}><FaFacebook className='size-10'></FaFacebook></NavLink>
            <NavLink to={'#'}><FaInstagram className='size-10'></FaInstagram></NavLink>
            <NavLink to={'#'}><FaYoutube className='size-10'></FaYoutube></NavLink>
            <NavLink to={'#'}><FaTwitter className='size-10'></FaTwitter></NavLink>

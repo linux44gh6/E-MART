@@ -78,7 +78,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="mt-10 px-5 flex justify-between">
+    <div className="px-5 flex justify-between pt-40">
       <div className="flex flex-col gap-5 w-1/2">
         {data.items.map((item) => (
           <div key={item._id} className="flex flex-col">

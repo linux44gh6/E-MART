@@ -33,7 +33,7 @@ const Details = () => {
         );
     }
     return (
-        <div className=' flex justify-center px-2'>
+        <div className=' flex justify-center px-2 '>
             <div className='w-1/2 border border-gray-400 p-2'>
                 <img className='w-80 mx-auto' src={product?.data?.image} alt="" />
                 <h1 className='text-2xl font-bold underline '>Description</h1>
